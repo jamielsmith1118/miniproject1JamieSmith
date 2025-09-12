@@ -29,6 +29,9 @@ mystockdata = {}
 for stock in mystocks:
     dat =yf.Ticker(stock)
     last10 = dat.history(period='10d')
+    mystockdata[stock] = []
+    for price in last10['Close']:
+        mystockdata[stock].append(price)
     mystockdata[stock] = last10['Close']
 
 
