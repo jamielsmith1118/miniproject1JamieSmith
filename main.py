@@ -2,9 +2,6 @@
 # Jamie Smith
 # Mini Project 1
 #
-# PLEASE WATCH THE VIDEO FOR THIS BEFORE STARTING!
-#
-# Please submit a link to your GitHub project. Do not submit your project files here.
 #
 # This project will be using the packages NumPy and Matplotlib in order to create 5 graphs that output as PNG files.
 #
@@ -18,4 +15,26 @@
 # (10/10 points) I will be checking out the main branch of your project. Please be sure to include a requirements.txt file which contains all the packages that need installed. You can create this fille with the output of pip freeze at the terminal prompt.
 #  (20/20 points) There should be a README.md file in your project that explains what your project is, how to install the pip requirements, and how to execute the program. Please use the GitHub flavor of Markdown.
 
+#import yfinance per instructions on https://ranaroussi.github.io/yfinance/
+import yfinance as yf
+import pprint
 
+#define stocks of interest
+mystocks = ('TSLA', 'SCHB', 'SCHD', 'BATRA', 'VTI', 'GOOG')
+
+#define dictionary of stock data
+mystockdata = {}
+
+#for loop to retrieve stock data
+for stock in mystocks:
+    dat =yf.Ticker(stock)
+    last10 = dat.history(period='10d')
+    mystockdata[stock] = last10['Close']
+
+
+
+
+
+
+#print stock data so it is easily readable
+pprint.pprint(mystockdata)
