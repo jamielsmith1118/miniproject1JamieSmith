@@ -18,6 +18,7 @@
 #import yfinance per instructions on https://ranaroussi.github.io/yfinance/
 import yfinance as yf
 import pprint
+import numpy as np
 
 #define stocks of interest
 mystocks = ('TSLA', 'SCHB', 'SCHD', 'BATRA', 'VTI', 'GOOG')
@@ -31,13 +32,10 @@ for stock in mystocks:
     last10 = dat.history(period='10d')
     mystockdata[stock] = []
     for price in last10['Close']:
-        mystockdata[stock].append(price)
-    mystockdata[stock] = last10['Close']
+       mystockdata[stock].append(price)
 
-
-
-
-
+    # create a numpy array from list
+    mystock = np.array(mystockdata[stock])
 
 #print stock data so it is easily readable
-pprint.pprint(mystockdata)
+print(mystock)
