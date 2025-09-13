@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 import copy
 
 #define stocks of interest
-mystocks = ('TSLA', 'SCHB', 'SCHD', 'BATRA', 'VTI', 'GOOG')
+mystocks = ('TSLA', 'SPMO', 'SCHD', 'BATRA', 'VTI', 'GOOG')
 
 #define dictionary of stock data
 mystockdata = {}
@@ -46,12 +46,16 @@ for stock in mystocks:
 
     # Sort the data
     hl.sort()
-    print(hl)
 
     #Plot data points using matplotlib
     plt.plot(mystock)
+    plt.title(stock)
     plt.axis((0,10, hl[0]-10, hl[-1]+10))
     plt.ylabel('Trading Days Ago')
     plt.ylabel('Closing Price')
-    plt.show()
 
+    #Save graphs in directory named charts
+    plt.savefig(f'charts/{stock}.png')
+
+    #show charts
+    plt.show()
