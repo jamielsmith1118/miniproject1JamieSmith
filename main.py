@@ -16,27 +16,23 @@
 #  (20/20 points) There should be a README.md file in your project that explains what your project is, how to install the pip requirements, and how to execute the program. Please use the GitHub flavor of Markdown.
 
 
-#import yfinance per instructions on https://ranaroussi.github.io/yfinance/
+# Import modules and packages
 import yfinance as yf
-import pprint
 import numpy as np
 import matplotlib.pyplot as plt
 import copy
 from pathlib import Path
 from stocks import mystocks
 
-#Create charts folder if it does not exist
+# Create charts folder if it does not exist
 charts = Path('charts')
 if not charts.exists():
     Path(r'charts').mkdir()
 
-#define stocks of interest
-# mystocks = ('TSLA', 'GOOG', 'META', 'PLTR', 'NVDA')
-
-#define dictionary of stock data
+# Define dictionary of stock data
 mystockdata = {}
 
-#for loop to retrieve stock data
+# Create for loop to retrieve stock data
 for stock in mystocks:
     dat =yf.Ticker(stock)
     last10 = dat.history(period='10d')
@@ -45,24 +41,25 @@ for stock in mystocks:
     # Create a list of Closing Prices
     for price in last10['Close']:
        mystockdata[stock].append(price)
-    # create a numpy array from list
+
+    # Create a numpy array from list
     mystock = np.array(mystockdata[stock])
 
-    #Create a variable to determine HIGH and LOW in time period
+    # Create a variable to determine HIGH and LOW in time period
     hl = copy.copy(mystockdata[stock])
 
     # Sort the data
     hl.sort()
 
-    #Plot data points using matplotlib
+    # Plot data points using matplotlib
     plt.plot(mystock)
     plt.title(stock)
     plt.axis((0,10, hl[0]-10, hl[-1]+10))
     plt.ylabel('Trading Days Ago')
     plt.ylabel('Closing Price')
 
-    #Save graphs in directory named charts
+    # Save graphs in directory named charts
     plt.savefig(f'charts/{stock}.png')
 
-    #show charts
+    # Show charts
     plt.show()
