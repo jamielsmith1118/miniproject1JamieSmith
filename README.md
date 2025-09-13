@@ -9,7 +9,7 @@ MiniProject 1 - Stock Tickers
  
 ## Description
  
-Users of this project will be able to create charts of the closing prices of their favorite stocks over the last 10 trading days. The program will look up the stocks entered into the mystocks variable and present the closing price in a graph, which is saved in a directory named charts. If the charts directory is not previously created, the program will create it before saving the graphs.
+Users of this project will be able to create charts of the closing prices of their favorite stocks over the last 10 trading days. The program will look up the stocks entered into the "mystocks" variable and present the closing price in a graph, which is saved in a directory named charts. If the charts directory is not previously created, the program will create it before saving the graphs.
  
 ## Getting Started
  
