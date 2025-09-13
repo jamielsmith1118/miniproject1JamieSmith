@@ -15,10 +15,13 @@
 # (10/10 points) I will be checking out the main branch of your project. Please be sure to include a requirements.txt file which contains all the packages that need installed. You can create this fille with the output of pip freeze at the terminal prompt.
 #  (20/20 points) There should be a README.md file in your project that explains what your project is, how to install the pip requirements, and how to execute the program. Please use the GitHub flavor of Markdown.
 
+
 #import yfinance per instructions on https://ranaroussi.github.io/yfinance/
 import yfinance as yf
 import pprint
 import numpy as np
+import matplotlib.pyplot as plt
+import copy
 
 #define stocks of interest
 mystocks = ('TSLA', 'SCHB', 'SCHD', 'BATRA', 'VTI', 'GOOG')
@@ -31,11 +34,24 @@ for stock in mystocks:
     dat =yf.Ticker(stock)
     last10 = dat.history(period='10d')
     mystockdata[stock] = []
+
+    # Create a list of Closing Prices
     for price in last10['Close']:
        mystockdata[stock].append(price)
-
     # create a numpy array from list
     mystock = np.array(mystockdata[stock])
 
-#print stock data so it is easily readable
-print(mystock)
+    #Create a variable to determine HIGH and LOW in time period
+    hl = copy.copy(mystockdata[stock])
+
+    # Sort the data
+    hl.sort()
+    print(hl)
+
+    #Plot data points using matplotlib
+    plt.plot(mystock)
+    plt.axis((0,10, hl[0]-10, hl[-1]+10))
+    plt.ylabel('Trading Days Ago')
+    plt.ylabel('Closing Price')
+    plt.show()
+
