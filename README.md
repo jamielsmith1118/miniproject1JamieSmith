@@ -9,8 +9,13 @@ MiniProject 1 - Stock Tickers
  
 ## Description
  
-Users of this project will be able to create charts of the closing prices of their favorite stocks over the last 10 trading days. The program will look up the stocks entered into the "mystocks" variable and present the closing price in a graph, which is saved in a directory named charts. If the charts directory is not previously created, the program will create it before saving the graphs.
- 
+This program allows users to generate charts of the closing prices of their chosen stocks over the last 10 trading days. When the program runs, it looks up each stock ticker listed in the stocks file, retrieves the closing price data, and creates a graph for each stock. The graphs are saved in a folder named charts, which the program will automatically create if it does not already exist. The current stock tickers included in the program are:
+- Tesla - TSLA
+- Google - GOOG
+- Microsoft - MSFT
+- Palantir Technologies, Inc. - PLTR
+- Nvidia - NVDA
+
 ## Getting Started
  
 ### Dependencies
@@ -21,6 +26,7 @@ pip install -r requirements.txt
  
 ### Executing program
  
+To view different stocks, update the list of tickers stored in the mystocks variable inside the stocks file before running the program. Then run:
 ```
 python main.py
 ```
